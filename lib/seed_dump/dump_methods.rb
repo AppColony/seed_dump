@@ -17,7 +17,6 @@ class SeedDump
 
     def dump_record(record, options)
       attribute_strings = []
-
       # We select only string attribute names to avoid conflict
       # with the composite_primary_keys gem (it returns composite
       # primary key attribute names as hashes).
@@ -97,6 +96,9 @@ class SeedDump
       end 
       if options[:serialized]==false && options[:import] 
         io.write(",:serialized => #{options[:serialized]}")
+      end 
+      if options[:timestamps]==false && options[:import] 
+        io.write(",:timestamps => #{options[:timestamps]}")
       end 
       io.write(")\n")
 
